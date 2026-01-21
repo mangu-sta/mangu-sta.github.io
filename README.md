@@ -1,0 +1,1 @@
+# mangu-sta.github.io
