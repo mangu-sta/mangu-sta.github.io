@@ -2,16 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { category: "Languages", items: ["JavaScript (ES6+)", "TypeScript", "Python", "Java", "SQL"] },
-  { category: "Frameworks & Libs", items: ["React", "Next.js", "Node.js", "TailwindCSS", "Framer Motion"] },
-  { category: "Tools & DevOps", items: ["Git", "Docker", "AWS", "Figma", "Vercel"] }
+  { category: "언어", items: ["JavaScript (ES6+)", "TypeScript", "Python", "Java", "SQL"] },
+  { category: "프레임워크 & 라이브러리", items: ["React", "Next.js", "Node.js", "TailwindCSS", "Framer Motion"] },
+  { category: "도구 & DevOps", items: ["Git", "Docker", "AWS", "Figma", "Vercel"] }
 ];
 
 const Skills = () => {
   return (
     <section id="skills" className="section" style={{ background: 'var(--color-surface)' }}>
       <div className="container">
-        <h2 className="section-title">Technical Skills</h2>
+        <h2 className="section-title">보유 기술</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
           {skills.map((group, index) => (
@@ -24,22 +24,24 @@ const Skills = () => {
               style={{
                 background: 'var(--color-bg)',
                 padding: '2rem',
-                borderRadius: '16px',
-                border: '1px solid var(--color-border)'
+                borderRadius: '8px',
+                border: '1px solid var(--color-border)',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.02)'
               }}
             >
-              <h3 style={{ marginBottom: '1.5rem', fontSize: '1.25rem' }}>{group.category}</h3>
+              <h3 style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--color-primary)', fontWeight: '600' }}>{group.category}</h3>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
                 {group.items.map((skill) => (
                   <span 
                     key={skill}
                     style={{
-                      padding: '0.5rem 1rem',
-                      borderRadius: '50px',
-                      background: 'rgba(255,255,255,0.05)',
+                      padding: '0.4rem 0.8rem',
+                      borderRadius: '4px',
+                      background: 'var(--color-surface)',
                       fontSize: '0.9rem',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      color: 'var(--color-text-muted)'
+                      border: '1px solid var(--color-border)',
+                      color: 'var(--color-text-main)',
+                      fontWeight: '500'
                     }}
                   >
                     {skill}

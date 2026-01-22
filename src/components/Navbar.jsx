@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Github, Mail } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -15,11 +15,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Introduction", href: "#introduction" },
-    { name: "Experience", href: "#experience" },
-    { name: "Skills", href: "#skills" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
+    { name: "소개", href: "#introduction" },
+    { name: "경력", href: "#experience" },
+    { name: "기술Stack", href: "#skills" },
+    { name: "프로젝트", href: "#portfolio" },
+    { name: "연락처", href: "#contact" },
   ];
 
   return (
@@ -30,7 +30,7 @@ const Navbar = () => {
         left: 0,
         right: 0,
         zIndex: 100,
-        background: scrolled ? "rgba(5, 5, 5, 0.8)" : "transparent",
+        background: scrolled ? "rgba(255, 255, 255, 0.9)" : "transparent",
         backdropFilter: scrolled ? "blur(10px)" : "none",
         borderBottom: scrolled ? "1px solid var(--color-border)" : "none",
         transition: "all 0.3s ease",
@@ -50,37 +50,35 @@ const Navbar = () => {
         <a
           href="#"
           style={{
-            fontSize: "1.5rem",
-            fontWeight: "bold",
-            letterSpacing: "1px",
+            fontSize: "1.25rem",
+            fontWeight: "700",
+            letterSpacing: "-0.5px",
+            color: "var(--color-text-main)",
           }}
         >
-          MANGU<span style={{ color: "var(--color-primary)" }}>.DEV</span>
+          Mangu
         </a>
 
         {/* Desktop Menu */}
-        <div className="desktop-menu" style={{ display: "none", gap: "2rem" }}>
+        <div className="desktop-menu" style={{ display: "none", gap: "2.5rem" }}>
           <style>{`@media (min-width: 768px) { .desktop-menu { display: flex !important; } .mobile-toggle { display: none !important; } }`}</style>
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               style={{
-                fontSize: "0.9rem",
+                fontSize: "1rem",
                 fontWeight: "500",
-                color: "var(--color-text-main)",
-                opacity: 0.8,
+                color: "var(--color-text-muted)",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.color = "var(--color-primary)";
-                e.currentTarget.style.opacity = "1";
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.color = "var(--color-text-main)";
-                e.currentTarget.style.opacity = "0.8";
+                e.currentTarget.style.color = "var(--color-text-muted)";
               }}
             >
-              {link.name.toUpperCase()}
+              {link.name}
             </a>
           ))}
         </div>
@@ -92,11 +90,11 @@ const Navbar = () => {
           style={{
             background: "none",
             border: "none",
-            color: "white",
+            color: "var(--color-text-main)",
             cursor: "pointer",
           }}
         >
-          <Menu size={28} />
+          <Menu size={24} />
         </button>
       </div>
 
@@ -112,7 +110,7 @@ const Navbar = () => {
               style={{
                 position: "fixed",
                 inset: 0,
-                background: "rgba(0,0,0,0.8)",
+                background: "rgba(0,0,0,0.2)",
                 zIndex: 98,
               }}
             />
@@ -120,20 +118,20 @@ const Navbar = () => {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              transition={{ type: "tween", duration: 0.3 }}
               style={{
                 position: "fixed",
                 top: 0,
                 bottom: 0,
                 right: 0,
-                width: "300px",
-                background: "var(--color-surface)",
+                width: "280px",
+                background: "var(--color-bg)",
                 padding: "2rem",
                 zIndex: 99,
                 display: "flex",
                 flexDirection: "column",
                 gap: "2rem",
-                borderLeft: "1px solid var(--color-border)",
+                boxShadow: "-5px 0 15px rgba(0,0,0,0.05)"
               }}
             >
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -142,11 +140,11 @@ const Navbar = () => {
                   style={{
                     background: "none",
                     border: "none",
-                    color: "white",
+                    color: "var(--color-text-main)",
                     cursor: "pointer",
                   }}
                 >
-                  <X size={28} />
+                  <X size={24} />
                 </button>
               </div>
               <div
@@ -154,7 +152,7 @@ const Navbar = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1.5rem",
-                  marginTop: "2rem",
+                  marginTop: "1rem",
                 }}
               >
                 {navLinks.map((link) => (
@@ -162,7 +160,7 @@ const Navbar = () => {
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    style={{ fontSize: "1.2rem", fontWeight: "600" }}
+                    style={{ fontSize: "1.1rem", fontWeight: "500", color: "var(--color-text-main)" }}
                   >
                     {link.name}
                   </a>

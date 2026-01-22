@@ -9,34 +9,9 @@ const Hero = () => {
       display: 'flex', 
       alignItems: 'center', 
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      paddingTop: 'var(--nav-height)'
     }}>
-      {/* Background Glow */}
-      <div style={{
-        position: 'absolute',
-        top: '-20%',
-        right: '-10%',
-        width: '600px',
-        height: '600px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%)',
-        opacity: 0.5,
-        filter: 'blur(50px)',
-        zIndex: -1
-      }} />
-       <div style={{
-        position: 'absolute',
-        bottom: '-10%',
-        left: '-10%',
-        width: '500px',
-        height: '500px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%)',
-        opacity: 0.5,
-        filter: 'blur(50px)',
-        zIndex: -1
-      }} />
-
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,72 +20,67 @@ const Hero = () => {
           viewport={{ once: true }}
         >
           <h2 style={{ 
-            fontSize: '1.5rem', 
-            color: 'var(--color-primary)', 
+            fontSize: '1.25rem', 
+            color: 'var(--color-text-muted)', 
             marginBottom: '1rem',
-            fontWeight: '600',
-            letterSpacing: '2px'
+            fontWeight: '500',
           }}>
-            HELLO, WORLD
+            안녕하세요,
           </h2>
           <h1 style={{ 
-            fontSize: 'clamp(3rem, 8vw, 6rem)', 
+            fontSize: 'clamp(3rem, 6vw, 5rem)', 
             fontWeight: '700', 
-            lineHeight: '1.1',
-            marginBottom: '1.5rem'
+            lineHeight: '1.2',
+            marginBottom: '1.5rem',
+            color: 'var(--color-text-main)'
           }}>
-            I'm <span style={{ color: 'var(--color-text-main)' }}>Mangu</span>.
-            <br />
-            <span style={{ 
-              background: 'linear-gradient(to right, var(--color-text-muted), var(--color-text-main))',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              opacity: 0.5
-            }}>
-              Software Engineer
-            </span>
+            웹 개발자 <br />
+            <span style={{ color: 'var(--color-primary)' }}>망구</span>입니다.
           </h1>
           <p style={{ 
             maxWidth: '600px', 
-            fontSize: '1.1rem', 
+            fontSize: '1.125rem', 
             color: 'var(--color-text-muted)',
-            marginBottom: '3rem'
+            marginBottom: '3rem',
+            lineHeight: '1.8'
           }}>
-            I craft digital experiences with a focus on aesthetics and performance. 
-            Passionate about building scalable applications and intuitive user interfaces.
+            사용자 경험을 최우선으로 생각하며, 깔끔하고 효율적인 코드를 작성하는 것을 목표로 합니다.
+            <br className="mobile-hide" />
+            새로운 기술을 배우고 적용하여 더 나은 웹 환경을 만들어가고 있습니다.
           </p>
           
           <motion.a 
             href="#portfolio"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             style={{
               display: 'inline-block',
-              padding: '1rem 2rem',
-              background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
-              borderRadius: '50px',
-              color: 'white',
-              fontWeight: '600',
-              boxShadow: '0 4px 15px var(--color-primary-glow)'
+              padding: '1rem 2.5rem',
+              backgroundColor: 'var(--color-text-main)',
+              color: 'var(--color-bg)',
+              borderRadius: '4px',
+              fontWeight: '500',
+              fontSize: '1rem'
             }}
           >
-            View Projects
+            프로젝트 보기
           </motion.a>
         </motion.div>
       </div>
 
       <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         style={{
           position: 'absolute',
           bottom: '2rem',
           left: '50%',
           transform: 'translateX(-50%)',
-          color: 'var(--color-text-muted)'
+          color: 'var(--color-text-muted)',
+          opacity: 0.6
         }}
       >
-        <ArrowDown />
+        <ArrowDown size={24} />
       </motion.div>
     </section>
   );
