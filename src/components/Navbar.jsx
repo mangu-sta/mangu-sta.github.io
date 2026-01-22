@@ -111,7 +111,7 @@ const Navbar = () => {
                 position: "fixed",
                 inset: 0,
                 background: "rgba(0,0,0,0.2)",
-                zIndex: 98,
+                zIndex: 1001,
               }}
             />
             <motion.div
@@ -127,7 +127,7 @@ const Navbar = () => {
                 width: "280px",
                 background: "var(--color-bg)",
                 padding: "2rem",
-                zIndex: 99,
+                zIndex: 1002,
                 display: "flex",
                 flexDirection: "column",
                 gap: "2rem",
