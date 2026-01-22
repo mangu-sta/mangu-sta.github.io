@@ -16,7 +16,6 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "소개", href: "#introduction" },
-    { name: "경력", href: "#experience" },
     { name: "기술Stack", href: "#skills" },
     { name: "프로젝트", href: "#portfolio" },
     { name: "연락처", href: "#contact" },

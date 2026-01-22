@@ -21,11 +21,12 @@ const Hero = () => {
         >
           <h2 style={{ 
             fontSize: '1.25rem', 
-            color: 'var(--color-text-muted)', 
+            color: 'var(--color-primary)', 
             marginBottom: '1rem',
-            fontWeight: '500',
+            fontWeight: '600',
+            letterSpacing: '1px'
           }}>
-            안녕하세요,
+            BACKEND DEVELOPER
           </h2>
           <h1 style={{ 
             fontSize: 'clamp(3rem, 6vw, 5rem)', 
@@ -34,19 +35,20 @@ const Hero = () => {
             marginBottom: '1.5rem',
             color: 'var(--color-text-main)'
           }}>
-            웹 개발자 <br />
-            <span style={{ color: 'var(--color-primary)' }}>망구</span>입니다.
+            안녕하세요,<br />
+            <span style={{ color: 'var(--color-secondary)' }}>망구</span>입니다.
           </h1>
           <p style={{ 
-            maxWidth: '600px', 
+            maxWidth: '650px', 
             fontSize: '1.125rem', 
             color: 'var(--color-text-muted)',
             marginBottom: '3rem',
-            lineHeight: '1.8'
+            lineHeight: '1.8',
+            wordBreak: 'keep-all'
           }}>
-            사용자 경험을 최우선으로 생각하며, 깔끔하고 효율적인 코드를 작성하는 것을 목표로 합니다.
-            <br className="mobile-hide" />
-            새로운 기술을 배우고 적용하여 더 나은 웹 환경을 만들어가고 있습니다.
+            Spring Boot 기반으로 서버 로직과 API를 설계하며, 프로젝트 전반의 구조와 데이터 흐름을 고민하는 백엔드 개발자입니다.
+            <br />
+            안정적이고 효율적인 시스템 구축에 열정을 가지고 있습니다.
           </p>
           
           <motion.a 
