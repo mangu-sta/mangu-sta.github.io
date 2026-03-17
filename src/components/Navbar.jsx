@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,6 +15,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
   const navLinks = [
     { name: "소개", href: "#introduction" },
     { name: "기술Stack", href: "#skills" },
@@ -22,6 +31,7 @@ const Navbar = () => {
   ];
 
   return (
+
     <nav
       style={{
         position: "fixed",
@@ -29,9 +39,9 @@ const Navbar = () => {
         left: 0,
         right: 0,
         zIndex: 100,
-        background: scrolled ? "rgba(255, 255, 255, 0.9)" : "transparent",
-        backdropFilter: scrolled ? "blur(10px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--color-border)" : "none",
+        background: scrolled || isOpen ? "rgba(255, 255, 255, 0.9)" : "transparent",
+        backdropFilter: scrolled || isOpen ? "blur(10px)" : "none",
+        borderBottom: scrolled || isOpen ? "1px solid var(--color-border)" : "none",
         transition: "all 0.3s ease",
         height: "var(--nav-height)",
         display: "flex",
@@ -44,15 +54,18 @@ const Navbar = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          position: "relative",
+          width: "100%",
         }}
       >
         <a
           href="#"
           style={{
-            fontSize: "1.25rem",
-            fontWeight: "700",
+            fontSize: "1.5rem",
+            fontWeight: "800",
             letterSpacing: "-0.5px",
             color: "var(--color-text-main)",
+            zIndex: 101, 
           }}
         >
           Mangu
@@ -85,88 +98,77 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button
           className="mobile-toggle"
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(!isOpen)}
           style={{
             background: "none",
             border: "none",
             color: "var(--color-text-main)",
             cursor: "pointer",
+            zIndex: 101,
           }}
         >
-          <Menu size={24} />
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{
+              position: "absolute",
+              top: "100%",
+              left: 0,
+              right: 0,
+              background: "rgba(255, 255, 255, 0.95)",
+              backdropFilter: "blur(10px)",
+              borderBottom: "1px solid var(--color-border)",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              className="container"
               style={{
-                position: "fixed",
-                inset: 0,
-                background: "rgba(0,0,0,0.2)",
-                zIndex: 1001,
-              }}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              style={{
-                position: "fixed",
-                top: 0,
-                bottom: 0,
-                right: 0,
-                width: "280px",
-                background: "var(--color-bg)",
-                padding: "2rem",
-                zIndex: 1002,
                 display: "flex",
                 flexDirection: "column",
                 gap: "2rem",
-                boxShadow: "-5px 0 15px rgba(0,0,0,0.05)"
+                padding: "2.5rem 2rem",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button
-                  onClick={() => setIsOpen(false)}
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false);
+                    const targetId = link.href.replace('#', '');
+                    const element = document.getElementById(targetId);
+                    if (element) {
+                      setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }}
                   style={{
-                    background: "none",
-                    border: "none",
+                    fontSize: "1.1rem",
+                    fontWeight: "500",
                     color: "var(--color-text-main)",
+                    display: "block",
+                    padding: "0.5rem 0",
                     cursor: "pointer",
+                    textDecoration: "none"
                   }}
                 >
-                  <X size={24} />
-                </button>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1.5rem",
-                  marginTop: "1rem",
-                }}
-              >
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    style={{ fontSize: "1.1rem", fontWeight: "500", color: "var(--color-text-main)" }}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          </>
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>

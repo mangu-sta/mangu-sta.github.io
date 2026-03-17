@@ -36,7 +36,7 @@ const Hero = () => {
             color: 'var(--color-text-main)'
           }}>
             안녕하세요,<br />
-            <span style={{ color: 'var(--color-secondary)' }}>망구</span>입니다.
+            <span style={{ color: 'var(--color-secondary)' }}>최명기</span>입니다.
           </h1>
           <p style={{ 
             maxWidth: '650px', 

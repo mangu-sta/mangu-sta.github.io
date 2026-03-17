@@ -27,6 +27,13 @@ html {
   scroll-behavior: smooth;
 }
 
+#introduction,
+#skills,
+#portfolio,
+#contact {
+  scroll-margin-top: var(--nav-height);
+}
+
 body {
   font-family: var(--font-family);
   background-color: var(--color-bg);
