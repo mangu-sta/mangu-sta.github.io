@@ -14,7 +14,8 @@ const projects = [
       "Jsoup 기반 커뮤니티 데이터 크롤링 및 리스크 탐지"
     ],
     tags: ["React", "Spring Boot", "MariaDB", "OAuth2", "Jsoup"],
-    color: "#FFB01D" // LoaPlan Yellowish color
+    color: "#FFB01D", // LoaPlan Yellowish color
+    githubUrl: "https://github.com/mangu-sta/LoaPlan_1.0"
   },
   {
     title: "ROGUE & RELOAD",
@@ -27,7 +28,8 @@ const projects = [
       "하이브리드 데이터 일관성 (Write-Behind Strategy)"
     ],
     tags: ["Spring Boot", "React", "Phaser 3", "WebSocket", "Redis", "Docker"],
-    color: "#D32F2F" // Rogue Red color
+    color: "#D32F2F", // Rogue Red color
+    githubUrl: "https://github.com/mangu-sta/R_R_1.0"
   }
 ];
 
@@ -118,21 +120,28 @@ const Projects = () => {
                 </div>
                 
                 <div style={{ marginTop: '2rem' }}>
-                   <button style={{ 
-                      display: 'inline-flex', 
-                      alignItems: 'center', 
-                      gap: '0.5rem',
-                      padding: '0.6rem 1.2rem',
-                      background: 'var(--color-text-main)',
-                      color: 'var(--color-bg)',
-                      border: 'none',
-                      borderRadius: '6px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      fontSize: '0.95rem'
-                    }}>
-                      <Github size={18} /> GitHub Repository
-                    </button>
+                   {project.githubUrl && (
+                     <a 
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ 
+                          display: 'inline-flex', 
+                          alignItems: 'center', 
+                          gap: '0.5rem',
+                          padding: '0.6rem 1.2rem',
+                          background: 'var(--color-text-main)',
+                          color: 'var(--color-bg)',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          fontSize: '0.95rem',
+                          textDecoration: 'none'
+                        }}>
+                        <Github size={18} /> GitHub Repository
+                      </a>
+                   )}
                 </div>
               </div>
             </motion.div>

@@ -26,30 +26,42 @@ const Hero = () => {
             fontWeight: '600',
             letterSpacing: '1px'
           }}>
-            BACKEND DEVELOPER
+            JUNIOR BACKEND DEVELOPER
           </h2>
           <h1 style={{ 
-            fontSize: 'clamp(3rem, 6vw, 5rem)', 
+            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
             fontWeight: '700', 
-            lineHeight: '1.2',
+            lineHeight: '1.3',
             marginBottom: '1.5rem',
-            color: 'var(--color-text-main)'
-          }}>
-            안녕하세요,<br />
-            <span style={{ color: 'var(--color-secondary)' }}>최명기</span>입니다.
-          </h1>
-          <p style={{ 
-            maxWidth: '650px', 
-            fontSize: '1.125rem', 
-            color: 'var(--color-text-muted)',
-            marginBottom: '3rem',
-            lineHeight: '1.8',
+            color: 'var(--color-text-main)',
             wordBreak: 'keep-all'
           }}>
-            Spring Boot 기반으로 서버 로직과 API를 설계하며, 프로젝트 전반의 구조와 데이터 흐름을 고민하는 백엔드 개발자입니다.
-            <br />
-            안정적이고 효율적인 시스템 구축에 열정을 가지고 있습니다.
-          </p>
+            안녕하세요.<br />
+            신입 백엔드 개발자<br />
+            <span style={{ color: 'var(--color-secondary)' }}>최명기</span>입니다.
+          </h1>
+          <div style={{ 
+            maxWidth: '650px', 
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.25rem',
+            fontSize: '1.15rem', 
+            color: 'var(--color-text-muted)',
+            marginBottom: '3rem',
+            lineHeight: '1.75',
+            wordBreak: 'keep-all'
+          }}>
+            <p style={{ margin: 0 }}>
+              아직 배우는 과정에 있지만, 꾸준히 성장하는 개발자가 되고 있습니다.
+            </p>
+            <p style={{ margin: 0 }}>
+              Spring Boot를 활용해 서비스 로직을 구현하며,<br />
+              단순히 동작하는 것을 넘어 <span style={{ color: 'var(--color-text-main)', fontWeight: '600' }}>“왜 이렇게 동작하는지”</span>를 고민하려 노력합니다.
+            </p>
+            <p style={{ margin: 0 }}>
+              작은 경험 하나하나를 통해 기본기를 쌓아가고 있습니다.
+            </p>
+          </div>
           
           <motion.a 
             href="#portfolio"
