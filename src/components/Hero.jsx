@@ -1,8 +1,43 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
+import Terminal from './Terminal';
+
+const phrases = [
+  "배움을 멈추지 않는",
+  "꾸준히 성장하는",
+  "끝까지 파고드는"
+];
 
 const Hero = () => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % phrases.length;
+      const fullText = phrases[i];
+
+      setText(isDeleting 
+        ? fullText.substring(0, text.length - 1) 
+        : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? 50 : 150);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 1500);
+      } else if (isDeleting && text === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(500);
+      }
+    };
+
+    let timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, typingSpeed, loopNum]);
   return (
     <section id="introduction" style={{ 
       minHeight: '100vh', 
@@ -12,13 +47,17 @@ const Hero = () => {
       overflow: 'hidden',
       paddingTop: 'var(--nav-height)'
     }}>
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+      <div className="container" style={{ 
+        position: 'relative', 
+        zIndex: 1, 
+        display: 'flex', 
+        flexDirection: 'row', 
+        gap: '3rem', 
+        flexWrap: 'wrap', 
+        alignItems: 'center', 
+        justifyContent: 'space-between' 
+      }}>
+        <div className="fade-in-up" style={{ flex: '6 1 500px', minWidth: '300px', maxWidth: '700px' }}>
           <h2 style={{ 
             fontSize: '1.25rem', 
             color: 'var(--color-primary)', 
@@ -29,26 +68,30 @@ const Hero = () => {
             JUNIOR BACKEND DEVELOPER
           </h2>
           <h1 style={{ 
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
+            fontSize: 'clamp(1.5rem, 6vw, 3.8rem)', 
             fontWeight: '700', 
-            lineHeight: '1.3',
+            lineHeight: '1.4',
             marginBottom: '1.5rem',
             color: 'var(--color-text-main)',
             wordBreak: 'keep-all'
           }}>
             안녕하세요.<br />
-            신입 백엔드 개발자<br />
+            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'var(--color-primary)' }}>{text}</span>
+              <span className="cursor-blink" style={{ fontWeight: '300' }}>|</span>
+            </span><br />
+            신입&nbsp;백엔드&nbsp;개발자<br />
             <span style={{ color: 'var(--color-secondary)' }}>최명기</span>입니다.
           </h1>
           <div style={{ 
             maxWidth: '650px', 
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.25rem',
+            gap: '1rem',
             fontSize: '1.15rem', 
             color: 'var(--color-text-muted)',
             marginBottom: '3rem',
-            lineHeight: '1.75',
+            lineHeight: '1.8',
             wordBreak: 'keep-all'
           }}>
             <p style={{ margin: 0 }}>
@@ -63,10 +106,9 @@ const Hero = () => {
             </p>
           </div>
           
-          <motion.a 
+          <a 
             href="#portfolio"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="hero-btn"
             style={{
               display: 'inline-block',
               padding: '1rem 2.5rem',
@@ -78,13 +120,16 @@ const Hero = () => {
             }}
           >
             프로젝트 보기
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
+        
+        <div className="fade-in-up delay-2" style={{ flex: '4 1 350px', display: 'flex', justifyContent: 'flex-end', maxWidth: '450px' }}>
+          <Terminal />
+        </div>
       </div>
 
-      <motion.div 
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+      <div 
+        className="bounce-animation"
         style={{
           position: 'absolute',
           bottom: '2rem',
@@ -95,7 +140,7 @@ const Hero = () => {
         }}
       >
         <ArrowDown size={24} />
-      </motion.div>
+      </div>
     </section>
   );
 };

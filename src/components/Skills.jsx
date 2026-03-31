@@ -1,10 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const skills = [
   { category: "Frontend", items: ["React", "HTML5", "CSS3"] },
   { category: "Backend", items: ["Java", "Spring Boot", "Spring Security", "Spring Data JPA", "WebSockets", "JWT"] },
-  { category: "Database & Infra", items: ["Redis", "MariaDB", "Docker", "AWS"] }
+  { category: "Database", items: ["Redis", "MariaDB"] }
 ];
 
 const Skills = () => {
@@ -15,12 +14,8 @@ const Skills = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
           {skills.map((group, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
               style={{
                 background: 'var(--color-bg)',
                 padding: '2rem',
@@ -48,7 +43,7 @@ const Skills = () => {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

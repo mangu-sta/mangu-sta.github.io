@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +47,7 @@ const Navbar = () => {
         left: 0,
         right: 0,
         zIndex: 100,
-        background: scrolled || isOpen ? "rgba(255, 255, 255, 0.9)" : "transparent",
+        background: scrolled || isOpen ? "var(--color-nav-bg, rgba(255, 255, 255, 0.9))" : "transparent",
         backdropFilter: scrolled || isOpen ? "blur(10px)" : "none",
         borderBottom: scrolled || isOpen ? "1px solid var(--color-border)" : "none",
         transition: "all 0.3s ease",
@@ -93,38 +101,40 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
+          <button onClick={toggleTheme} style={{ background: 'none', border: 'none', color: 'var(--color-text-main)', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="mobile-toggle"
-          onClick={() => setIsOpen(!isOpen)}
-          style={{
-            background: "none",
-            border: "none",
-            color: "var(--color-text-main)",
-            cursor: "pointer",
-            zIndex: 101,
-          }}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="mobile-toggle" style={{ display: "flex", alignItems: "center", gap: "1rem", zIndex: 101 }}>
+          <button onClick={toggleTheme} style={{ background: 'none', border: 'none', color: 'var(--color-text-main)', cursor: 'pointer', display: 'flex' }}>
+            {theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "var(--color-text-main)",
+              cursor: "pointer",
+              display: 'flex'
+            }}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+          <div
             style={{
               position: "absolute",
               top: "100%",
               left: 0,
               right: 0,
-              background: "rgba(255, 255, 255, 0.95)",
+              background: "var(--color-nav-menu-bg, rgba(255, 255, 255, 0.95))",
               backdropFilter: "blur(10px)",
               borderBottom: "1px solid var(--color-border)",
               overflow: "hidden",
@@ -168,9 +178,8 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </nav>
   );
 };

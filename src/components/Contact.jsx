@@ -5,18 +5,7 @@ const Contact = () => {
   return (
     <section id="contact" className="section" style={{ background: 'linear-gradient(to top, var(--color-surface), transparent)' }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="section-title">연락처</h2>
-        <p style={{ 
-          maxWidth: '500px', 
-          margin: '0 auto 3rem', 
-          fontSize: '1.1rem', 
-          color: 'var(--color-text-muted)',
-          lineHeight: '1.8'
-        }}>
-          새로운 기회와 협업에 언제나 열려있습니다.<br/>
-          이메일이나 전화로 편하게 연락주세요!
-        </p>
-        
+        <h2 className="section-title centered">연락처</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', marginBottom: '3rem' }}>
           <a 
             href="mailto:mangusta5700@gmail.com"

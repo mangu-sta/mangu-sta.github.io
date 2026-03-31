@@ -1,6 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Github } from 'lucide-react';
+import loaplanImg from '../assets/loaplan.png';
+import rogueImg from '../assets/rogue.png';
 
 const projects = [
   {
@@ -15,7 +16,8 @@ const projects = [
     ],
     tags: ["React", "Spring Boot", "MariaDB", "OAuth2", "Jsoup"],
     color: "#FFB01D", // LoaPlan Yellowish color
-    githubUrl: "https://github.com/mangu-sta/LoaPlan_1.0"
+    githubUrl: "https://github.com/mangu-sta/LoaPlan_1.0",
+    image: loaplanImg
   },
   {
     title: "ROGUE & RELOAD",
@@ -29,7 +31,8 @@ const projects = [
     ],
     tags: ["Spring Boot", "React", "Phaser 3", "WebSocket", "Redis", "Docker"],
     color: "#D32F2F", // Rogue Red color
-    githubUrl: "https://github.com/mangu-sta/R_R_1.0"
+    githubUrl: "https://github.com/mangu-sta/R_R_1.0",
+    image: rogueImg
   }
 ];
 
@@ -41,26 +44,16 @@ const Projects = () => {
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              style={{
-                background: 'var(--color-bg)',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                border: '1px solid var(--color-border)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                display: 'flex',
-                flexDirection: 'column'
-              }}
+              className="project-card"
             >
-              <div style={{ 
-                padding: '2.5rem',
-                borderBottom: '1px solid var(--color-border)'
-              }}>
+              <div className="project-image-container">
+                <img src={project.image} alt={project.title} className="project-image" />
+                <div className="project-overlay"></div>
+              </div>
+              
+              <div className="project-content">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
                   <div>
                     <h3 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'var(--color-text-main)', fontWeight: '700' }}>
@@ -144,7 +137,7 @@ const Projects = () => {
                    )}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
